@@ -1,0 +1,66 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class NewPerson{
+    public int Id;
+    public String Name;
+    public String panNumber;
+    public String Adress;
+    public boolean isMale;
+    public boolean isRun;
+    
+    public NewPerson(int Id,String Name,String panNumber,String Adress,boolean isMale,boolean isRun){
+        this.Name = Name;
+        this.Id = Id;
+        this.panNumber = panNumber;
+        this.Adress = Adress;
+        this.isMale = isMale;
+        this.isRun = isRun;
+    }
+}
+
+class NewAdmision{
+    ArrayList<NewPerson> arr = new ArrayList<>();
+    
+    NewAdmision(ArrayList<NewPerson> arr){
+        this.arr = arr;
+    }
+    
+    void showAllMembers(){
+        for(NewPerson i : arr){
+            System.out.println(i.Id);
+        }
+    }
+}
+
+class Fess{
+    
+}
+
+
+class Main{
+    static Scanner sc = new Scanner(System.in);
+    static ArrayList<NewPerson> arr = new ArrayList<>();
+	public static void main(String[] args){
+	    add();
+		NewAdmision ad = new NewAdmision(arr);
+		ad.showAllMembers();
+	}
+	
+	static void add(){
+	    System.out.print("Enter Id :- ");
+	    int id = sc.nextInt();
+	    System.out.print("Enter Name :- ");
+	    String name = sc.nextLine();
+	    System.out.print("Enter PanNumber :- ");
+	    String pan = sc.nextLine();
+	    System.out.print("Enter Addresse :- ");
+	    String add = sc.nextLine();
+	    System.out.print("Enter Is Male :- ");
+	    boolean male = sc.nextBoolean();
+	    System.out.print("Enter Is Run :- ");
+	    boolean run = sc.nextBoolean();
+	    
+	    arr.add(new NewPerson(id,name,pan,add,male,run));
+	}
+}

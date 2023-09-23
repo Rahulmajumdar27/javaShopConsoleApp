@@ -1,34 +1,57 @@
-import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 class NewPerson{
     public int Id;
     public String Name;
-    public String panNumber;
     public String Adress;
-    public boolean isMale;
-    public boolean isRun;
+	public int joinDate;
+	public int joinMonth;
     
-    public NewPerson(int Id,String Name,String panNumber,String Adress,boolean isMale,boolean isRun){
-        this.Name = Name;
+    public NewPerson(int Id,String Name,String Adress,int joinDate,int joinMonth){
         this.Id = Id;
-        this.panNumber = panNumber;
+		this.Name = Name;
         this.Adress = Adress;
-        this.isMale = isMale;
-        this.isRun = isRun;
+        this.joinDate = joinDate;
+		this.joinMonth = joinMonth;
     }
 }
 
 class NewAdmision{
+	Scanner sc = new Scanner(System.in);
     ArrayList<NewPerson> arr = new ArrayList<>();
-    
-    NewAdmision(ArrayList<NewPerson> arr){
-        this.arr = arr;
-    }
+	
+	NewAdmision(){
+		arr.add(new NewPerson(102,"Rohit","None",12,05));
+		arr.add(new NewPerson(208,"Mohit","KaranVihar",22,02));
+		arr.add(new NewPerson(598,"Tarun","PachimVihar",8,03));
+		arr.add(new NewPerson(537,"Lalit","RamPur",31,07));
+	}
+	
+	void addMember(){
+		System.out.println();
+		System.out.print("Enter Name :- ");
+		String name = sc.nextLine();
+		System.out.print("Enter Id :- ");
+		int id = sc.nextInt();
+		System.out.print("Enter Address :- ");
+		String address = sc.next();
+		System.out.print("Enter Join Date :- ");
+		int date = sc.nextInt();
+		System.out.print("Enter Join Month :- ");
+		int month = sc.nextInt();
+		
+		arr.add(new NewPerson(id,name,address,date,month));
+	}
     
     void showAllMembers(){
         for(NewPerson i : arr){
-            System.out.println(i.Id);
+				System.out.println("--------------------");
+				System.out.println();
+				System.out.println("Name :- "+i.Name);
+				System.out.println("Id :- "+i.Id);
+				System.out.println("Adress :- "+i.Adress);
+				System.out.println("Join Date :- "+i.joinDate+"-"+i.joinMonth+"-"+"2023");
         }
     }
 }
@@ -40,27 +63,32 @@ class Fess{
 
 class Main{
     static Scanner sc = new Scanner(System.in);
+	static NewAdmision admision = new NewAdmision();
     static ArrayList<NewPerson> arr = new ArrayList<>();
 	public static void main(String[] args){
-	    add();
-		NewAdmision ad = new NewAdmision(arr);
-		ad.showAllMembers();
+		
+		while(true){
+			ui();
+			int ch = sc.nextInt();
+			if(ch==1){
+				admision.addMember();
+			}else if(ch==2){
+				admision.showAllMembers();
+			}else if(ch == 4){
+				break;
+			}
+		}
+		
 	}
 	
-	static void add(){
-	    System.out.print("Enter Id :- ");
-	    int id = sc.nextInt();
-	    System.out.print("Enter Name :- ");
-	    String name = sc.nextLine();
-	    System.out.print("Enter PanNumber :- ");
-	    String pan = sc.nextLine();
-	    System.out.print("Enter Addresse :- ");
-	    String add = sc.nextLine();
-	    System.out.print("Enter Is Male :- ");
-	    boolean male = sc.nextBoolean();
-	    System.out.print("Enter Is Run :- ");
-	    boolean run = sc.nextBoolean();
-	    
-	    arr.add(new NewPerson(id,name,pan,add,male,run));
+	static void ui(){
+		System.out.println();
+		System.out.println("----------WeGoGym----------");
+		System.out.println();
+		System.out.println("1.Add New Member");
+		System.out.println("2.Show All Member");
+		System.out.println("3.Memeber Fees Time");
+		System.out.println("4.Exit");
 	}
+	
 }
